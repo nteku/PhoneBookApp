@@ -42,6 +42,10 @@ public:
 		return true;
 	}
 
+	bool validInfo(string phoneRecord) {
+
+	}
+
 	void setFirstName(string fName) {
 		this->firstName = fName;
 	}
