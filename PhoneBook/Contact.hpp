@@ -43,7 +43,10 @@ public:
 	}
 
 	bool validInfo(string phoneRecord) {
-
+		
+		for (int i = 0; i < phoneRecord.size(); i++) {
+			if 
+		}
 	}
 
 	void setFirstName(string fName) {
