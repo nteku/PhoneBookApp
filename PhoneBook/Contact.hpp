@@ -1,6 +1,9 @@
 #include <unordered_map>
 #include <string>
+#include <stdexcept>  
+#include <memory>   
 #include <iostream>
+
 using namespace std;
 class Contact {
 
@@ -11,9 +14,11 @@ private:
 	string phoneNumber;
 	string location;
 	string email;
+	shared_ptr <Contact> next;
 
 
 public:
+	 
 
 	Contact(string firstName, string lastName, string phoneNumber, string location, string email) {
 		this->firstName = firstName;
@@ -21,15 +26,15 @@ public:
 		this->phoneNumber = phoneNumber;
 		this->location = location;
 		this->email = email;
+
+		next = nullptr;
 	}
 
 	~Contact() {
 		cout << "Destructor called" << endl;
 	}
 
-	Contact() {
-
-	}
+	 
 
 	bool validPhoneNumber(string phoneNumber) {
 
@@ -45,7 +50,7 @@ public:
 	bool validInfo(string phoneRecord) {
 		
 		for (int i = 0; i < phoneRecord.size(); i++) {
-			if 
+			 
 		}
 	}
 
@@ -88,5 +93,13 @@ public:
 
 	string getEmail() {
 		return email;
+	}
+
+	shared_ptr <Contact> getNext() {
+		return next;
+	}
+
+	void setNext(shared_ptr <Contact> nextNode) {
+		next = nextNode;
 	}
 };

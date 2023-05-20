@@ -23,5 +23,8 @@
     <ClInclude Include="Contact.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="PhoneBook.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
