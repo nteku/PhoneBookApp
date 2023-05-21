@@ -21,10 +21,10 @@ public:
 
 
 	void addContact(string firstName, string lastName, string phoneNumber,
-		            string location, string email) {
+		string location, string email) {
 
-		shared_ptr <Contact> contact = make_unique<Contact>(firstName, lastName, phoneNumber, location, email);
-		
+		shared_ptr <Contact> contact = make_shared<Contact>(firstName, lastName, phoneNumber, location, email);
+
 
 		if (head == nullptr) {
 
@@ -36,7 +36,7 @@ public:
 
 		shared_ptr <Contact> cur = head;
 
-		if (contactExists(firstName,lastName)) {
+		if (contactExists(firstName, lastName)) {
 
 			cout << "This contact already exists" << endl;
 			return;
@@ -47,7 +47,7 @@ public:
 		}
 
 		cur->setNext(contact);
-		
+
 		cout << "\n\nSucessfully added contact.\n" << endl;
 	}
 
@@ -65,10 +65,10 @@ public:
 		cout << "Type the first name and the last name of the contact you want to remove." << endl;
 		cin >> firstName >> lastName;
 
-		 
+
 
 		if (!contactExists(firstName, lastName)) {
-			cout << endl <<"This contact does not exist." << endl << endl;
+			cout << endl << "This contact does not exist." << endl << endl;
 			return;
 		}
 
@@ -103,16 +103,36 @@ public:
 
 
 	void updatingContact() {
-		
+
 		string firstName;
 		string lastName;
+		int option;
 
 		cout << "Who do you want to update?" << endl;
 		cin >> firstName >> lastName;
 
 		cout << "What do you want to update" << endl;
+		cout << "1 for First Name\n2 for Last Name\n3 for Phone Number\n4 for Location\n5 for Email." << endl;
+		cin >> option;
+
+		switch (option) {
+
+		case 1:
+			cout << "\nWhat would you like to update the first name to?" << endl;
+			cin >> firstName;
+
+
+		}
+
+
 
 	}
+
+
+	void finishUpdating(string prev, string replacement) {
+
+	}
+
 
 	bool contactExists(string firstName, string lastName) {
 		shared_ptr <Contact> cur = head;

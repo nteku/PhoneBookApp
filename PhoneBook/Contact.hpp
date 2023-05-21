@@ -24,18 +24,13 @@ public:
 		this->firstName = firstName;
 		this->lastName = lastName;
 		this->phoneNumber = phoneNumber;
-		this->location = location;
+		this->location = location; 
 		this->email = email;
 
 		next = nullptr;
 	}
 
-	~Contact() {
-		cout << "Destructor called" << endl;
-	}
-
 	 
-
 	bool validPhoneNumber(string phoneNumber) {
 
 		for (auto itr = phoneNumber.begin(); itr != phoneNumber.end(); itr++) {
