@@ -86,10 +86,9 @@ public:
 		shared_ptr <Contact> cur = head;
 
 
-
 		while (cur->getNext() != nullptr) {
 
-			if ((cur->getNext()->getFirstName() == firstName) && (cur->getNext()->getLastName() == lastName)) {
+			if ( (cur->getNext()->getFirstName() == firstName) && (cur->getNext()->getLastName() == lastName) ) {
 
 				cur->getNext() = cur->getNext()->getNext();
 
@@ -104,12 +103,26 @@ public:
 
 	void updatingContact() {
 
+		if (isEmpty()) {
+
+			cout << "This phonebook has no contacts.\n" << endl;
+		}
 		string firstName;
 		string lastName;
+		
+		string prev;
+		string rep;
 		int option;
 
 		cout << "Who do you want to update?" << endl;
 		cin >> firstName >> lastName;
+
+		if (!contactExists(firstName, lastName)) {
+			cout << "This contact does not exist.\n" << endl;
+			return;
+		}
+
+		shared_ptr <Contact> contact = getContact(firstName, lastName);
 
 		cout << "What do you want to update" << endl;
 		cout << "1 for First Name\n2 for Last Name\n3 for Phone Number\n4 for Location\n5 for Email." << endl;
@@ -119,18 +132,104 @@ public:
 
 		case 1:
 			cout << "\nWhat would you like to update the first name to?" << endl;
-			cin >> firstName;
-
-
+			cin >> rep;
+			finishUpdating("firstName", firstName, rep);
+			break;
+		case 2:
+			cout << "\nWhat would you like to update the last name to?" << endl;
+			cin >> rep;
+			finishUpdating("lastName", lastName, rep);
+			break;
+		case 3:
+			cout << "\nWhat would you like to update the phone number to?" << endl;
+			cin >> rep;
+			finishUpdating("phoneNumber", contact->getPhoneNumber(), rep);
+			break;
+		case 4:
+			cout << "\nWhat would you like to update " << firstName << "'s location to ? " << endl;
+			cin >> rep;
+			finishUpdating("location", contact->getLocation(), rep);
+			break;
+		case 5:
+			cout << "\nWhat would you like to update the contact's email to?" << endl;
+			cin >> rep;
+			finishUpdating("phoneNumber", contact->getPhoneNumber(), rep);
+			break;
 		}
 
 
 
 	}
 
+	shared_ptr <Contact> getContact(string firstName, string lastName) {
+		shared_ptr <Contact> cur = head;
+	
+		while (cur != nullptr) {
 
-	void finishUpdating(string prev, string replacement) {
+			if ((cur->getFirstName() == firstName) && (cur->getLastName() == lastName))
+				return cur;
+		}
 
+		return nullptr;
+	}
+
+
+	void finishUpdating(string op, string prev, string replacement) {
+		shared_ptr <Contact> cur = head;
+
+		if (op == "firstName") {
+
+			while (cur != nullptr) {
+				if (cur->getFirstName() == prev) {
+					cur->setFirstName(replacement);
+					break;
+				}
+			}
+		}
+
+		if (op == "lastName") {
+
+			while (cur != nullptr) {
+				if (cur->getLastName() == prev) {
+					cur->setLastName(replacement);
+					break;
+				}
+			}
+		}
+
+		if (op == "phoneNumber") {
+
+			while (cur != nullptr) {
+				if (cur->getPhoneNumber() == prev) {
+					cur->setPhoneNumber(replacement);
+					break;
+				}
+			}
+		}
+
+
+		if (op == "location") {
+
+			while (cur != nullptr) {
+				if (cur->getLocation() == prev) {
+					cur->setLocation(replacement);
+					break;
+				}
+			}
+		}
+
+
+		if (op == "email") {
+
+			while (cur != nullptr) {
+				if (cur->getEmail() == prev) {
+					cur->setEmail(replacement);
+					break;
+				}
+			}
+		}
+
+		cout << "This contact has offically been updated.\n" << endl;
 	}
 
 

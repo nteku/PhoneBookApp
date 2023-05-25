@@ -45,8 +45,7 @@ int main()
 			
 
 		case 2:
-			cout << "What is the name of the phone record you would like to update " << endl;
-			cin >> firstName >> lastName;
+			phoneBook.updatingContact();
 			break;
 
 		case 3:
@@ -63,6 +62,4 @@ int main()
 }
 
 
-void checkContact() {
-
-}
+ 
